@@ -31,7 +31,7 @@ const signup = async (req, res) => {
     //     await Payment.create({ userID: user._id });
     //   }
       const token = newToken(user);
-      return res.status(201).send({ status: "ok", token: token });
+      return res.status(201).send({ status: "ok", token: token,user:user });
     } catch (e) {
     //   console.log("error",e.message);
     //   if (e.toString().includes("E11000 duplicate key error collection")) {
@@ -61,7 +61,7 @@ const signin = async (req, res) => {
       const match=await bcrypt.compare(req.body.password,user.password);
       if(match){
         const token = newToken(user);
-        return res.status(201).send({ status: "ok", token: token });
+        return res.status(201).send({ status: "ok", token: token ,user:user});
       }
       return res.status(401).send({ message: "Not Authorized" });
       
@@ -82,13 +82,13 @@ const signin = async (req, res) => {
     }
     try {
       const payload = await verifyToken(token);
-      console.log(payload);
+      console.log("here authentucate",payload);
       const user = await Model.findById(payload.id)
-        
+        console.log("usr",payload,user);
       req.user = user;
       next();
     } catch (e) {
-      console.log(e);
+      console.log("erroe",encodeURI);
       return res.status(401).end();
     }
   };

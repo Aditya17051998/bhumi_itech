@@ -9,6 +9,7 @@ const { signup, signin,protect}=require("./config/auth")
 const Admin =require("./source/admin/adminModel");
 const Student =require("./source/student/studentModel");
 const Teacher =require("./source/teacher/teacherModel");
+const adminRouter=require("./source/admin/adminRouter");
 
 
 
@@ -39,6 +40,8 @@ app.post("/signupTeacher", teacherModel, signup);
 app.post("/signinTeacher", teacherModel, signin);
 app.post("/signupStudent", studentModel, signup);
 app.post("/signinStudent", studentModel, signin);
+
+app.use("/api/user",adminModel,protect,adminRouter);
 
 
 mongoose.connect(MONGOURI, {
