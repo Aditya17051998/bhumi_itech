@@ -11,9 +11,9 @@ app.use(cors());
 // app.use(express.urlencoded());
 app.use(express.json());
 
-app.get('/about',(req,res)=>{
+app.get('/',(req,res)=>{
     console.log("home");
-    res.send("hello world");
+    res.send("hello hii  new world");
 });
 
 
