@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.get('/',(req,res)=>{
     console.log("home");
-    res.send("hello hii  new world");
+    res.send("hello");
 });
 
 
