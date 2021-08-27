@@ -82,9 +82,9 @@ const signin = async (req, res) => {
     }
     try {
       const payload = await verifyToken(token);
-      console.log("here authentucate",payload);
+      // console.log("here authentucate",payload);
       const user = await Model.findById(payload.id)
-        console.log("usr",payload,user);
+        // console.log("usr",payload,user);
       req.user = user;
       next();
     } catch (e) {
