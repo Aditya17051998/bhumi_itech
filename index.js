@@ -4,6 +4,9 @@ const app=express();
 const cors=require('cors');
 const PORT = process.env.PORT || 3000;
 const mongoose=require("mongoose");
+const passport = require("passport");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const {MONGOURI} = require('./config/secret');
 const { signup, signin,protect}=require("./config/auth")
 const Admin =require("./source/admin/adminModel");
@@ -19,6 +22,23 @@ app.use(cors());
 
 
 app.use(express.json());
+
+app.use(
+  session({
+      name: "sid",
+      secret: "qwertyuiopasdfghjklzxcvbnm",
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+          SameSite: "None",
+          Secure: true,
+          maxAge: 60000000
+      },
+  })
+);
+app.use(cookieParser("qwertyuiopasdfghjklzxcvbnm"));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const adminModel = (req, res, next) => {
     req.model = Admin;

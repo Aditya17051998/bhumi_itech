@@ -9,7 +9,7 @@ const { statusCode } = require("./constant");
 const emailVerification = (userData) => new Promise((resolve , reject) => {
     const email = {
         to: userData.email,
-        from: process.env.VERIFICATION_EMAIL,
+        from: "no-reply@lawmasko.com",
         subject: "Verify Masko Legal Account",
         html: `<h1>Please Verify Email Address</h1><br>Please click on the below link to verify your account /authentication/verification/${userData.token}`
     };
@@ -32,7 +32,7 @@ const emailVerification = (userData) => new Promise((resolve , reject) => {
 const passwordRecoveryEmail = (userData) => new Promise((resolve , reject) => {
     const email = {
         to: userData.email,
-        from: process.env.VERIFICATION_EMAIL,
+        from: "no-reply@lawmasko.com",
         subject: "Reset Password for Masko Legal",
         html: `<h1>Please Verify Email Address</h1><br>Please click on the below link to reset password of your account /resetPassword/${userData.token}`
     };

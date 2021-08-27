@@ -78,6 +78,7 @@ const signUp = (body) => new Promise((resolve, reject) => {
                     const userDetails = prepareUser(body);
                     userModel.create([userDetails])
                         .then((user) => {
+                            console.log("user",user)
                             const userProfileDetails = {
                                 userId: user[0]._id,
                                 name: user[0].name,
